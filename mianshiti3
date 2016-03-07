@@ -1,0 +1,51 @@
+//二维数组中的查找
+//从一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+//输入：二维数组，整数；输出：True Or False
+#include<iostream>
+using namespace std;
+bool Find(int matrix[4][4], int rows, int columns, int number)
+{
+	bool result = false;
+	int i = 0,j=columns-1;
+	while (i>=0&j>=0)
+	{
+		if (matrix[i][j] > number)
+			j--;
+		else if (matrix[i][j] < number)
+			i++;
+		else
+		{
+			result = true;
+			
+		}
+		if (result == true)
+			break;
+
+	}
+	return result;
+}
+int main()
+{
+	int matrix[4][4];
+	int result;
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+			cin >> matrix[i][j];
+	}
+	result = Find(matrix, 4, 4, 7);
+	if (result)
+		cout << "Find.\n";
+	else
+	{
+		cout << "No Find.\n";
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+			cout<< matrix[i][j]<<' ';
+		cout << '\n';
+	}
+	
+
+}
