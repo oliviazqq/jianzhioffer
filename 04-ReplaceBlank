@@ -1,0 +1,51 @@
+//实现一个函数，把字符串中的每个空格替换成"%20"。例如：输入"We are happy."，则输出"We%20are%20happy."
+#include<iostream>
+using namespace std;
+void ReplaceBlank(char string[], int length)
+{
+	int originLength=0;
+	int numberOfBlank=0;
+	int i = 0;
+	while (string[i]!='\0')
+	{
+		originLength++;
+		if (string[i] == ' ')
+		{
+			numberOfBlank++;
+		}
+		++i;
+	}
+	int newLength;
+	newLength = originLength + numberOfBlank * 2;
+	if (newLength > length)
+		return;
+	int indexOld;
+	int indexNew;
+	indexOld = originLength;
+	indexNew = newLength;
+	while (indexOld>=0&&indexOld<indexNew)
+	{
+		if (string[indexOld] != ' ')
+			string[indexNew--] = string[indexOld];
+		else
+		{
+			string[indexNew--] = '0';
+			string[indexNew--] = '2';
+			string[indexNew--] = '%';
+		}
+		--indexOld;
+	}
+
+
+
+	cout << string << '\n';
+
+
+}
+int main()
+{
+	char string[]=" we are happy.";
+	ReplaceBlank(string, 30);
+	cout << string<<'\n';
+	return 0;
+}
